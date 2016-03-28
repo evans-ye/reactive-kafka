@@ -84,7 +84,8 @@ private[commit] class ConsumerCommitter[T](committerFactory: CommitterProvider, 
         log.debug(s"committed offsets: $resultOffsetMap")
         // We got the offset of the first unfetched message, and we want the
         // offset of the last fetched message
-        committedOffsetMap = OffsetMap(resultOffsetMap.map.mapValues(_ - 1))
+        val updatedOffsetMap = offsetMapToFlush.intersect(OffsetMap(resultOffsetMap.map.mapValues(_ - 1)))
+        committedOffsetMap = committedOffsetMap.updateOffset(updatedOffsetMap)
       case scala.util.Failure(ex) =>
         log.error(ex, "Failed to commit offsets")
         committer.tryRestart() match {
