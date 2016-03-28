@@ -36,12 +36,12 @@ val zkCommitterDependencies = Seq(kafka) ++ curator
 
 val commonSettings =
 sonatypeSettings ++ scalariformSettings ++ Seq(
-  version := "0.8.3",
+  version := "0.8.3.1",
   organization := "com.softwaremill.reactivekafka",
   startYear := Some(2014),
   licenses := Seq("Apache License 2.0" -> url("http://opensource.org/licenses/Apache-2.0")),
   homepage := Some(url("https://github.com/softwaremill/reactive-kafka")),
-  scalaVersion := "2.11.7",
+  scalaVersion := "2.10.5",
   crossScalaVersions := Seq("2.10.5", "2.11.7"),
   scalacOptions ++= Seq(
   "-deprecation",
